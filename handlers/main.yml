@@ -1,2 +1,10 @@
 ---
-# handlers file for ansible-repo
+- name: ansible-zabbix-server | Restart zabbix daemon
+  service:
+    name: zabbix-server
+    state: restarted
+    
+- name: ansible-zabbix-server | Restart httpd daemon
+  service:
+    name: httpd
+    state: restarted

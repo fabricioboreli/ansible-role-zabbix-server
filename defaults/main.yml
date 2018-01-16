@@ -1,2 +1,21 @@
 ---
-# defaults file for ansible-repo
+# Zabbix Server Default Variables
+zabbix_server_dbhost: "localhost"
+zabbix_server_dbport: "5432"
+zabbix_server_dbname: "zabbix"
+zabbix_server_dbuser: "zabbix"
+zabbix_server_dbpassword: "zabbixpasswd"
+zabbix_server_hostname: "localhost"
+zabbix_server_listenport: "10051"
+zabbix_server_name: "Zabbix Server"
+
+zabbix_server_date_timezone: "America/Sao_Paulo"
+zabbix_server_sourceip:
+zabbix_server_startpollers: "5"
+zabbix_server_startpollersunreachable: "2"
+zabbix_server_starttrappers: "5"
+zabbix_server_startpingers: "1"
+zabbix_server_housekeepingfrequency: "1"
+zabbix_server_cachesize: "8M"
+zabbix_server_startdbsyncers: "4"
+zabbix_server_valuecachesize: "8M"

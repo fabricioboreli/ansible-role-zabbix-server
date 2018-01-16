@@ -1,0 +1,39 @@
+- name: ansible-zabbix-server | Enable the zabbix server daemon
+  service:
+    name: zabbix-server
+    enabled: yes
+
+- name: ansible-zabbix-server | Create zabbix-web directory
+  file:
+    path: /etc/zabbix/web
+    owner: "apache"
+    group: "apache"
+    state: directory
+    mode: 0750
+
+- name: ansible-zabbix-server | Copy the server configuration file to the host
+  template:
+    src: "zabbix_server.conf.j2"
+    dest: "/etc/zabbix/zabbix_server.conf"
+    owner: root
+    group: zabbix 
+    mode: 0640
+  notify: ansible-zabbix-server | Restart zabbix daemon
+
+- name: ansible-zabbix-server | Copy the web UI configuration file to the host
+  template:
+    src: "zabbix.conf.php.j2"
+    dest: "/etc/zabbix/web/zabbix.conf.php"
+    owner: apache
+    group: apache
+    mode: 0644
+  notify: ansible-zabbix-server | Restart httpd daemon
+  
+- name: ansible-zabbix-server | Copy the httpd configuration file to the host
+  template:
+    src: "httpd-zabbix.conf.j2"
+    dest: "/etc/httpd/conf.d/zabbix.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: ansible-zabbix-server | Restart httpd daemon
